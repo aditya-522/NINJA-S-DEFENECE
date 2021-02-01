@@ -29,7 +29,9 @@ function preload(){
   obstacle7 =loadImage("images/Objects/TombStone (1).png");
   obstacle8 =loadImage("images/Objects/TombStone (2).png");
   
-  
+  diesound = loadSound("images/die.mp3")
+  CPsound = loadSound("images/CP.mp3")
+
   gameOverImg = loadImage("images/gameover.jpg");
   restartImg = loadImage("images/restart1.png");
 }
@@ -75,7 +77,7 @@ function setup() {
 
 function draw() {
  
-  background("white");
+  background(groundImage);
   
   
   
@@ -84,7 +86,7 @@ function draw() {
     ground.velocityX = -(6 + 3*score/100);
   
     if(keyDown("UP_ARROW") && man.y >= 340) {
-      man.velocityY = -12;
+      man.velocityY = -16;
     }
   
     man.velocityY = man.velocityY + 0.8
@@ -112,6 +114,7 @@ function draw() {
     }  
    */
     if(obstacleGroup.isTouching(man)){
+      diesound.play();
         gameState = END;
     }
   }
@@ -141,7 +144,7 @@ function draw() {
 
   fill("white");
   textSize(40)
-  text("Score: "+ score, 1400,50);
+  text("Score: "+ score, 1000,50);
 
 }
 /*
